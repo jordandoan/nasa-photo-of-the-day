@@ -1,5 +1,3 @@
-import React from "react";
-
 let months = [
     {text: "Jan", value: "01"},  
     {text: "Feb", value: "02"},  

@@ -6,7 +6,7 @@ const Select = (props) => {
             <option>{props.default}</option>
             {
                 props.data.map((obj, index) =>
-                <option value={props.value[index]}>{obj}</option>    
+                <option key={obj} value={props.value[index]}>{obj}</option>    
             )}
         </select>
     );
