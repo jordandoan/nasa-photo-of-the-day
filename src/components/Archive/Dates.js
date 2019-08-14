@@ -73,5 +73,20 @@ let days = [
     "30",
     "31"
 ];
-
-export {days, months, years};
+let today = new Date();
+let oldDates = [];
+for (let i = 1; i < 31; i++) {
+    today.setDate(today.getDate() - 1);
+    let currentDate = today;
+    let year = currentDate.getFullYear();
+    let month = currentDate.getMonth() + 1;
+    let day = currentDate.getDate();
+    if (month < 10) {
+        month = "0" + month;
+    }
+    if (day < 10) { 
+        day = "0" + day;
+    }
+    oldDates.push(`${year}-${month}-${day}`);
+}
+export {days, months, years, oldDates};

@@ -1,5 +1,6 @@
 import React from "react";
 import NavLink from "./NavLink"
+
 const NavBar = (props) => {
     let nav1 = ["HOME","ARCHIVE"];
     let nav2= ["ABOUT","NASA"];
