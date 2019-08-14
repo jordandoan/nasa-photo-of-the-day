@@ -31,3 +31,9 @@
     transform: rotate(360deg);
   }
 }
+
+.archive-bar {
+  height:500px;
+  width:300px;
+  background-color:coral;
+}
