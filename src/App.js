@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import "./App.css";
-import Button from "./components/Buttons/Button";
 import ArchiveBar from "./components/Archive/ArchiveBar";
 import NavBar from "./components/NavBar/NavBar";
 import Error from "./components/Misc/Error";
@@ -30,6 +29,8 @@ function App() {
   //     .then(res => setData(res.data))
   //     .catch(err => console.log(err));
   // },[])
+
+
   if (!data) {
     return ( <h3>Loading...</h3>);
   }
@@ -43,7 +44,6 @@ function App() {
       <main>
         <ArchiveBar/>
         <ImageSection data={data}/>
-
       </main>
     </div>
   );
