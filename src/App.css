@@ -47,11 +47,21 @@ main {
 }
 
 .image-section {
+  background-color:cornflowerblue;
   width:700px;
 }
+
 .image-section img {
   width:500px;
 }
+
 nav {
+  display:flex;
   background-color:skyblue;
+  justify-content: center;
+  align-items: baseline;
+}
+
+nav * {
+  margin:5px;
 }
