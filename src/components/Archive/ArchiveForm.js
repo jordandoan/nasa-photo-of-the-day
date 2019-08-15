@@ -1,6 +1,7 @@
 import React from "react";
 import {days, months, years} from "./Dates";
 import Select from "./Select";
+import {Button} from "semantic-ui-react";
 
 const ArchiveForm = () => {
     let monthsText = months.map(month => month.text);
@@ -10,7 +11,7 @@ const ArchiveForm = () => {
             <Select data={monthsText} value={monthsValue} default="Month"/>
             <Select data={days} value={days} default="Day"/>
             <Select data={years} value={years} default="Year"/>
-            <button>View Photo of the Day</button>
+            <Button color="blue">View Photo of the Day</Button>
         </form>
 
     );

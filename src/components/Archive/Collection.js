@@ -4,7 +4,6 @@ import {URL} from "../../App";
 import axios from "axios";
 
 const Collection = () => {
-    URL = "https://api.nasa.gov/planetary/apod?api_key=QXTKi5SDfKfV06fEZ52T4eYsnOulXZUeRJSPNVpr";
     let [data, setData] = useState([]);
     useEffect(()=>{
         axios.all(oldDates.map((date) =>{
@@ -12,7 +11,6 @@ const Collection = () => {
                 .then(res => res.data))
         })).then(results => {
             setData(results);
-            console.log(results);
         });
 }, []);
     if (data.length == 0){
