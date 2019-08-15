@@ -87,6 +87,7 @@ for (let i = 1; i < 31; i++) {
     if (day < 10) { 
         day = "0" + day;
     }
-    oldDates.push(`${year}-${month}-${day}`);
+    let dateQuery = `${year}-${month}-${day}`
+    oldDates.push(dateQuery);
 }
 export {days, months, years, oldDates};

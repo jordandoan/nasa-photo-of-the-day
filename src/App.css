@@ -61,7 +61,10 @@ nav {
   justify-content: center;
   align-items: baseline;
 }
-
+.collection-image {
+  width: 70px;
+  margin: 2px;
+}
 nav * {
   margin:5px;
 }
