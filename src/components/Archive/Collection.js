@@ -4,7 +4,9 @@ import {URL} from "../../App";
 import axios from "axios";
 import styled from "styled-components";
 
-const Collection = () => {
+const Collection = (props) => {
+    let [data, setData] = useState([]);
+
     let Collection = styled.div`
         display:flex;
         flex-wrap:wrap;
@@ -26,15 +28,27 @@ const Collection = () => {
         margin: -10px 0px 10px -10px;
     `
 
-    let [data, setData] = useState([]);
+    let hoverEvent = (event) => {
+        props.setImg(event.target.src);
+    }
+
+    let handleEvent = (event) => {
+        props.setImg(event.target.src);
+    }
+    
     useEffect(()=>{
-        axios.all(oldDates.map((date) =>{
-            return (axios.get(`${URL}&date=${date}`)
-                .then(res => res.data))
-        })).then(results => {
-            setData(results);
-        });
-    }, []);
+        let getData = () => {
+            axios.all(oldDates.map((date) =>{
+                return (axios.get(`${URL}&date=${date}`)
+                    .then(res => res.data))
+            })).then(results => {
+                setData(results);
+            });
+        };
+        getData();
+        console.log("mounting...");
+    }, [])
+
     if (data.length == 0){
         return (<h1>Loading...</h1>)
     }
@@ -42,9 +56,9 @@ const Collection = () => {
         <Collection>
             {data.map((date) => {
                 if (date.media_type == "video") {
-                    return  <ImageContainer><CollectionVideo key={date.date}src={date.url} alt={date.title}/></ImageContainer>
+                    return  <ImageContainer key={date.date}><CollectionVideo key={date.date}src={date.url} alt={date.title}/></ImageContainer>
                 } else {
-                    return <ImageContainer><CollectionImage src={date.url} key={date.date} alt={date.title}/></ImageContainer>
+                    return <ImageContainer onClick={(event) => {handleEvent(event)}}key={date.date}><CollectionImage src={date.url} key={date.date} alt={date.title}/></ImageContainer>
                 }
             })} 
 

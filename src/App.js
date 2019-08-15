@@ -22,15 +22,23 @@ import styled from "styled-components";
 */
 const URL = "https://api.nasa.gov/planetary/apod?api_key=pmW4WE9mA9HM05TfozdfR4Ej2DM7Nt79nLVJa0qU";
 function App() {
-  let mockData = {"date":"2019-08-14","explanation":"What's that next to the Moon? Saturn. In its monthly trip around the Earth -- and hence Earth's sky -- our Moon passed nearly in front of Sun-orbiting Saturn earlier this week.  Actually the Moon passed directly in front of Saturn from the viewpoints of a wide swath of Earth's Southern Hemisphere.  The featured image from Sydney, Australia captured the pair a few minutes before the eclipse.  The image was a single shot lasting only 1/500th of a second, later processed to better highlight both the Moon and Saturn. Since Saturn is nearly opposite the Sun, it can be seen nearly the entire night, starting at sunset, toward the south and east.  The gibbous Moon was also nearly opposite the Sun, and so also visible nearly the entire night -- it will be full tomorrow night. The Moon will occult Saturn again during every lap it makes around the Earth this year.","hdurl":"https://apod.nasa.gov/apod/image/1908/MoonSaturn_Patonai_1280.jpg","media_type":"image","service_version":"v1","title":"Saturn Behind the Moon","url":"https://apod.nasa.gov/apod/image/1908/MoonSaturn_Patonai_960.jpg"};
-  let [data,setData] = useState(mockData);
-  let [query,setQuery] = useState();
+  //let mockData = {"date":"2019-08-14","explanation":"What's that next to the Moon? Saturn. In its monthly trip around the Earth -- and hence Earth's sky -- our Moon passed nearly in front of Sun-orbiting Saturn earlier this week.  Actually the Moon passed directly in front of Saturn from the viewpoints of a wide swath of Earth's Southern Hemisphere.  The featured image from Sydney, Australia captured the pair a few minutes before the eclipse.  The image was a single shot lasting only 1/500th of a second, later processed to better highlight both the Moon and Saturn. Since Saturn is nearly opposite the Sun, it can be seen nearly the entire night, starting at sunset, toward the south and east.  The gibbous Moon was also nearly opposite the Sun, and so also visible nearly the entire night -- it will be full tomorrow night. The Moon will occult Saturn again during every lap it makes around the Earth this year.","hdurl":"https://apod.nasa.gov/apod/image/1908/MoonSaturn_Patonai_1280.jpg","media_type":"image","service_version":"v1","title":"Saturn Behind the Moon","url":"https://apod.nasa.gov/apod/image/1908/MoonSaturn_Patonai_960.jpg"};
+  // let [data,setData] = useState(mockData);
+  let [data,setData]= useState(null);
+  let [imgURL, setImg] = useState(null);
+  let [query,setQuery] = useState(null);
 
-  // useEffect(() => {
-  //   axios.get(URL)
-  //     .then(res => setData(res.data))
-  //     .catch(err => console.log(err));
-  // },[])
+  useEffect(() => {
+    let getData = () => {
+      axios.get(URL)
+        .then((res) => {setData(res.data)})
+        .catch(err => console.log(err));
+    }
+    console.log("initial mount");
+    getData();
+
+  },[])
+    
 
   let Main = styled.div`
     display:flex;
@@ -50,8 +58,8 @@ function App() {
       </p> */}
       <NavBar date={data.date}/>
       <Main>
-        <ArchiveBar/>
-        <ImageSection data={data}/>
+        <ArchiveBar imgURL={imgURL} setImg={setImg}/>
+        <ImageSection data={data} imgURL={imgURL} setImg={setImg}/>
       </Main>
     </div>
   );

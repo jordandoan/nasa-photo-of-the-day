@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
+import axios from "axios";
 const ImageSection = (props) => {
     let ImageMain = styled.div`
     background-color:cornflowerblue;
@@ -19,10 +20,11 @@ const ImageSection = (props) => {
         opacity:.5;
         text-align:left;
         font-family: 'Montserrat', sans-serif;
-    `    
+    `
+    
     return(
         <ImageMain>
-            <Image src={props.data.hdurl} alt={`NASA's Daily: ${props.data.date}`}/>
+            <Image src={props.imgURL ? props.imgURL : props.data.hdurl} alt={`NASA's Daily: ${props.data.date}`}/>
             <Info>
                 <h2>{props.data.title}</h2>
                 <p>{props.data.explanation}</p>

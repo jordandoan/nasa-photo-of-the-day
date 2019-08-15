@@ -3,7 +3,7 @@ import ArchiveForm from "./ArchiveForm";
 import Collection from "./Collection";
 import styled from "styled-components";
 
-const ArchiveBar = () => {
+const ArchiveBar = (props) => {
     let ArchiveBar = styled.div`
         height:500px;
         width:300px;
@@ -16,7 +16,7 @@ const ArchiveBar = () => {
         <ArchiveBar>
             <StyledP>View any of the previous photos of the day!</StyledP>
             <ArchiveForm/>
-            <Collection/>
+            <Collection imgURL={props.imgURL} setImg={props.setImg}/>
         </ArchiveBar>
     );
 }
