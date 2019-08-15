@@ -4,15 +4,28 @@ const ImageSection = (props) => {
     let Image = styled.img`
         width:500px;
     `
+    let ImageMain = styled.div`
+        background-color:cornflowerblue;
+        width:700px;
+    `
+    let Info = styled.div`
+        margin:auto;
+        width:400px;
+        padding:10px;
+        border: 2px solid blue;
+        background-color:white;
+        opacity:.5;
+        text-align:left;
+        font-family: 
+    `    
     return(
-        <div className="image-section">
+        <ImageMain>
             <Image src={props.data.hdurl} alt={`NASA's Daily: ${props.data.date}`}/>
-            <div>
+            <Info>
                 <h2>{props.data.title}</h2>
                 <p>{props.data.explanation}</p>
-            </div>
-            I am the main image section!
-        </div>
+            </Info>
+        </ImageMain>
     );
 }
 

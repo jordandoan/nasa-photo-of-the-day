@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-//import "./App.css";
+import "./App.css";
 import ArchiveBar from "./components/Archive/ArchiveBar";
 import NavBar from "./components/NavBar/NavBar";
 import Error from "./components/Misc/Error";
 import Loading from "./components/Misc/Loading";
 import ImageSection from "./components/Image/Main";
+import styled from "styled-components";
 
 /*
   API:
@@ -31,7 +32,13 @@ function App() {
   //     .catch(err => console.log(err));
   // },[])
 
-
+  let Main = styled.div`
+    display:flex;
+    justify-content: space-between;
+    max-width:1500px;
+    width:70%;
+    border:
+  `
   if (!data) {
     return ( <h3>Loading...</h3>);
   }
@@ -42,10 +49,10 @@ function App() {
         app! Have fun 🚀!
       </p> */}
       <NavBar date={data.date}/>
-      <main>
+      <Main>
         <ArchiveBar/>
         <ImageSection data={data}/>
-      </main>
+      </Main>
     </div>
   );
 }

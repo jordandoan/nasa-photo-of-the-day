@@ -32,7 +32,7 @@
   }
 }
 
-.archive-bar {
+/* .archive-bar {
   height:500px;
   width:300px;
   background-color:coral;
@@ -46,14 +46,6 @@ main {
   border:
 }
 
-.image-section {
-  background-color:cornflowerblue;
-  width:700px;
-}
-
-.image-section img {
-  width:500px;
-}
 
 nav {
   display:flex;
@@ -61,10 +53,6 @@ nav {
   justify-content: center;
   align-items: baseline;
 }
-.collection-image {
-  width: 70px;
-  margin: 2px;
-}
 nav * {
   margin:5px;
-}
+} */
