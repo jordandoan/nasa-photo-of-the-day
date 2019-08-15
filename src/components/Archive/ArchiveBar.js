@@ -5,7 +5,7 @@ import Collection from "./Collection";
 const ArchiveBar = () => {
     return (
         <div className="archive-bar">
-            This is an archive bar!
+            <p>View any of the previous photos of the day!</p>
             <ArchiveForm/>
             <Collection/>
         </div>

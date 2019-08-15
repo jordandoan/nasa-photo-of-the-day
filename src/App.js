@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import "./App.css";
+//import "./App.css";
 import ArchiveBar from "./components/Archive/ArchiveBar";
 import NavBar from "./components/NavBar/NavBar";
 import Error from "./components/Misc/Error";

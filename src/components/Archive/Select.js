@@ -1,17 +1,15 @@
 import React from "react";
 
 const Select = (props) => {
-    return ( <
-        select >
-        <
-        option > { props.default } < /option> {
+    return ( 
+        <select>
+        <option selected disabled>{props.default}</option> 
+        {
             props.data.map((obj, index) =>
-                <
-                option key = { obj }
-                value = { props.value[index] } > { obj } < /option>    
+                <option key = { obj } value = { props.value[index] } > { obj } </option>    
             )
-        } <
-        /select>
+        } 
+        </select>
     );
 }
 

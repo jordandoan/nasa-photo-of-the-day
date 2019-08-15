@@ -1,12 +1,16 @@
 import React from "react";
-import ImageInfo from "./Info";
-
+import styled from "styled-components";
 const ImageSection = (props) => {
+    let Image = styled.img`
+        width:500px;
+    `
     return(
         <div className="image-section">
-            <img src={props.data.hdurl} alt={`NASA's Daily: ${props.data.date}`}/>
-            <ImageInfo title={props.data.title} explanation={props.data.explanation}/>
-
+            <Image src={props.data.hdurl} alt={`NASA's Daily: ${props.data.date}`}/>
+            <div>
+                <h2>{props.data.title}</h2>
+                <p>{props.data.explanation}</p>
+            </div>
             I am the main image section!
         </div>
     );
