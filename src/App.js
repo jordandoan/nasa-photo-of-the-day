@@ -26,7 +26,6 @@ function App() {
   // let [data,setData] = useState(mockData);
   let [data,setData]= useState(null);
   let [imgURL, setImg] = useState(null);
-  let [query,setQuery] = useState(null);
 
   useEffect(() => {
     let getData = () => {
@@ -48,7 +47,7 @@ function App() {
     margin-top:20px;
   `
   if (!data) {
-    return ( <h3>Loading...</h3>);
+    return ( <Loading/>)
   }
   return (
     <div className="App">
@@ -58,7 +57,7 @@ function App() {
       </p> */}
       <NavBar date={data.date}/>
       <Main>
-        <ArchiveBar imgURL={imgURL} setImg={setImg}/>
+        <ArchiveBar data={data} setData={setData} imgURL={imgURL} setImg={setImg}/>
         <ImageSection data={data} imgURL={imgURL} setImg={setImg}/>
       </Main>
     </div>

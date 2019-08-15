@@ -35,6 +35,7 @@ const Collection = (props) => {
     let handleEvent = (event) => {
         props.setImg(event.target.src);
     }
+
     
     useEffect(()=>{
         let getData = () => {
@@ -68,3 +69,4 @@ const Collection = (props) => {
 }
 
 export default Collection;
+export const MemoizedCollection = React.memo(Collection);

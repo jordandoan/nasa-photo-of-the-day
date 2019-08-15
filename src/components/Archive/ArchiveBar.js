@@ -15,8 +15,8 @@ const ArchiveBar = (props) => {
     return (
         <ArchiveBar>
             <StyledP>View any of the previous photos of the day!</StyledP>
-            <ArchiveForm/>
-            <Collection imgURL={props.imgURL} setImg={props.setImg}/>
+            <ArchiveForm data={props.data} setData={props.setData} imgURL={props.imgURL} setImg={props.setImg}/>
+            <Collection setImg={props.setImg}/>
         </ArchiveBar>
     );
 }
