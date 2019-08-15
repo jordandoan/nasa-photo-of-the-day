@@ -6,14 +6,24 @@ import styled from "styled-components";
 
 const Collection = () => {
     let Collection = styled.div`
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        margin:20px 5px;
+    `
+    let ImageContainer = styled.div`
+        width:70px;
+        height:70px;
+        margin:2px;
+        overflow:hidden;
     `
     let CollectionImage = styled.img`
-        width: 70px;
-        margin: 2px;
+        height: 130px;
+        margin: -10px 0px 10px -10px;
     `
     let CollectionVideo = styled.iframe`
-        width: 70px;
-        margin: 2px;
+        height: 130px;
+        margin: -10px 0px 10px -10px;
     `
 
     let [data, setData] = useState([]);
@@ -29,15 +39,16 @@ const Collection = () => {
         return (<h1>Loading...</h1>)
     }
     return (
-        <div className="collection">
+        <Collection>
             {data.map((date) => {
                 if (date.media_type == "video") {
-                    return <CollectionVideo key={date.date}src={date.url} alt={date.title}/>
+                    return  <ImageContainer><CollectionVideo key={date.date}src={date.url} alt={date.title}/></ImageContainer>
                 } else {
-                    return <CollectionImage src={date.url} key={date.date} alt={date.title}/>
+                    return <ImageContainer><CollectionImage src={date.url} key={date.date} alt={date.title}/></ImageContainer>
                 }
             })} 
-        </div>
+
+        </Collection>
     );
     
 }

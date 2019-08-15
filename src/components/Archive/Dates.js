@@ -75,7 +75,7 @@ let days = [
 ];
 let today = new Date();
 let oldDates = [];
-for (let i = 1; i < 11; i++) {
+for (let i = 1; i < 13; i++) {
     today.setDate(today.getDate() - 1);
     let currentDate = today;
     let year = currentDate.getFullYear();

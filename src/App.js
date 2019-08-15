@@ -34,10 +34,10 @@ function App() {
 
   let Main = styled.div`
     display:flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     max-width:1500px;
-    width:70%;
-    border:
+    width:80%;
+    border:1px solid red;
   `
   if (!data) {
     return ( <h3>Loading...</h3>);
