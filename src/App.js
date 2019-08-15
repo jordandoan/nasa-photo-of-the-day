@@ -37,7 +37,7 @@ function App() {
     justify-content: space-evenly;
     max-width:1500px;
     width:80%;
-    border:1px solid red;
+    margin-top:20px;
   `
   if (!data) {
     return ( <h3>Loading...</h3>);

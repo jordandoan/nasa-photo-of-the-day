@@ -9,9 +9,12 @@ const ArchiveBar = () => {
         width:300px;
         background-color:coral;
     `
+    let StyledP = styled.p`
+        font-family: 'Archivo Black', sans-serif;
+    `
     return (
         <ArchiveBar>
-            <p>View any of the previous photos of the day!</p>
+            <StyledP>View any of the previous photos of the day!</StyledP>
             <ArchiveForm/>
             <Collection/>
         </ArchiveBar>

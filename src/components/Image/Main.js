@@ -1,22 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 const ImageSection = (props) => {
-    let Image = styled.img`
-        width:500px;
-    `
     let ImageMain = styled.div`
-        background-color:cornflowerblue;
-        width:700px;
+    background-color:cornflowerblue;
+    width:700px;
+    `
+    let Image = styled.img`
+        width: 500px;
+        margin: 20px 10px;
     `
     let Info = styled.div`
         margin:auto;
-        width:400px;
-        padding:10px;
+        width:90%;
+        padding:30px;
+        margin:10px auto;
         border: 2px solid blue;
         background-color:white;
         opacity:.5;
         text-align:left;
-        font-family: 
+        font-family: 'Montserrat', sans-serif;
     `    
     return(
         <ImageMain>
