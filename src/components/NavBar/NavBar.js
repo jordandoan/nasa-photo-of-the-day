@@ -1,7 +1,14 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import NavLink from "./NavLink"
 import styled from "styled-components";
+import ImageContext, {ImageConsumer} from "../../ImageContext";
+
 const NavBar = (props) => {
+    let imageData = useContext(ImageContext);
+    let {image, setImage} = imageData();
+    useEffect(() => {
+        setImage("hey");
+    },[]);
     let Nav = styled.nav`
         display:flex;
         background-color:skyblue;
@@ -18,8 +25,8 @@ const NavBar = (props) => {
     return (
         <Nav>
             {createLinks(nav1)}
-            <div>
-                <h1>NASA PHOTO OF THE DAY <br></br>{props.date}</h1>
+            <div onClick={()=>{setImage("bye")}}>
+                {/* <h1>NASA PHOTO OF THE DAY <br></br>{imageData.mainData.date}</h1> */}{image}
             </div>
             {createLinks(nav2)}
         </Nav>

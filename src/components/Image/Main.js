@@ -1,7 +1,8 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useContext, useState} from "react";
 import styled from "styled-components";
 import axios from "axios";
-const ImageSection = (props) => {
+import ImageContext from "../../ImageContext";
+const ImageSection = () => {
     let ImageMain = styled.div`
     background-color:cornflowerblue;
     width:700px;
@@ -21,13 +22,22 @@ const ImageSection = (props) => {
         text-align:left;
         font-family: 'Montserrat', sans-serif;
     `
-    
+    let imageData = useContext(ImageContext);
+    let [data,setData] = useState(imageData.mainData)
+    useEffect(() => {
+        let changeState = () => {
+            setData(imageData.mainData);
+        }
+        changeState();
+    }, [imageData.mainData])
+    console.log(imageData);
     return(
         <ImageMain>
-            <Image src={props.imgURL ? props.imgURL : props.data.hdurl} alt={`NASA's Daily: ${props.data.date}`}/>
+            <Image src={imageData.img ? imageData.img : imageData.original} alt={`NASA's Daily: ${imageData.mainData.explanation}`}/>
             <Info>
-                <h2>{props.data.title}</h2>
-                <p>{props.data.explanation}</p>
+                <h2>{imageData.mainData.title}</h2>
+                <p>{data.explanation}</p>
+                <button onClick={()=>{imageData.mainData.explanation = "DEEZ NUTS!";imageData.setData(imageData.mainData)} }>Click me to change the state of the caption!</button>
             </Info>
         </ImageMain>
     );

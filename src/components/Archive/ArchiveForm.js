@@ -1,19 +1,22 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import {days, months, years} from "./Dates";
 import Select from "./Select";
 import styled from "styled-components";
 import axios from "axios";
 import {URL} from "../../App";
-import { tsPropertySignature } from "@babel/types";
+import ImageContext from "../../ImageContext";
 
 const ArchiveForm = (props) => {
+    let imageData = useContext(ImageContext);
     let [day, changeDay] = useState("");
     let [month, changeMonth] = useState("");
     let [year, changeYear] = useState("");
-    
-    let changeData = (event, stateFunction) => {
-        stateFunction(event.target.value);
+    let [data, setData] = useState(imageData)
+
+    let changeData = (event, changeState) => {
+        changeState(event.target.value);
     }
+
     let showNew = () => {
         let dateQuery = `&date=${year}-${month}-${day}`
         if (dateQuery.length != 16) {
@@ -21,8 +24,7 @@ const ArchiveForm = (props) => {
         }
         axios.get(URL+dateQuery)
             .then((res) => {
-                props.setData(res.data);
-                props.setImg(res.data.hdurl);
+                setData(res.data);
             });
     }
 

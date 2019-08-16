@@ -7,6 +7,7 @@ import Error from "./components/Misc/Error";
 import Loading from "./components/Misc/Loading";
 import ImageSection from "./components/Image/Main";
 import styled from "styled-components";
+import {ImageProvider} from "./ImageContext"
 
 /*
   API:
@@ -25,17 +26,22 @@ function App() {
   //let mockData = {"date":"2019-08-14","explanation":"What's that next to the Moon? Saturn. In its monthly trip around the Earth -- and hence Earth's sky -- our Moon passed nearly in front of Sun-orbiting Saturn earlier this week.  Actually the Moon passed directly in front of Saturn from the viewpoints of a wide swath of Earth's Southern Hemisphere.  The featured image from Sydney, Australia captured the pair a few minutes before the eclipse.  The image was a single shot lasting only 1/500th of a second, later processed to better highlight both the Moon and Saturn. Since Saturn is nearly opposite the Sun, it can be seen nearly the entire night, starting at sunset, toward the south and east.  The gibbous Moon was also nearly opposite the Sun, and so also visible nearly the entire night -- it will be full tomorrow night. The Moon will occult Saturn again during every lap it makes around the Earth this year.","hdurl":"https://apod.nasa.gov/apod/image/1908/MoonSaturn_Patonai_1280.jpg","media_type":"image","service_version":"v1","title":"Saturn Behind the Moon","url":"https://apod.nasa.gov/apod/image/1908/MoonSaturn_Patonai_960.jpg"};
   // let [data,setData] = useState(mockData);
   let [data,setData]= useState(null);
-  let [imgURL, setImg] = useState(null);
+  let [nugget,sNug] = useState();
+  let chicken = useState();
 
   useEffect(() => {
     let getData = () => {
       axios.get(URL)
-        .then((res) => {setData(res.data)})
+        .then((res) => {
+          setData(res.data);
+          // ImageProvider.data = res.data;
+          // ImageProvider.img = res.data.hdurl;
+          // ImageProvider.original = res.data.hdurl;
+        })
         .catch(err => console.log(err));
     }
     console.log("initial mount");
     getData();
-
   },[])
     
 
@@ -50,17 +56,26 @@ function App() {
     return ( <Loading/>)
   }
   return (
-    <div className="App">
-      {/* <p>
-        Read through the instructions in the README.md file to build your NASA
-        app! Have fun 🚀!
-      </p> */}
-      <NavBar date={data.date}/>
-      <Main>
-        <ArchiveBar data={data} setData={setData} imgURL={imgURL} setImg={setImg}/>
-        <ImageSection data={data} imgURL={imgURL} setImg={setImg}/>
-      </Main>
-    </div>
+    // value={
+    //   {
+    //     mainData:data, 
+    //     img:null, 
+    //     original:data.hdurl,
+    //     setData:setData
+
+    //   }
+    //   }
+      <div className="App">
+        {/* <p>
+          Read through the instructions in the README.md file to build your NASA
+          app! Have fun 🚀!
+        </p> */}
+        <NavBar/>
+        {/* <Main>
+          <ArchiveBar/>
+          <ImageSection/>
+        </Main> */}
+      </div>
   );
 }
 
