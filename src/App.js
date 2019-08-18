@@ -8,6 +8,7 @@ import Loading from "./components/Misc/Loading";
 import ImageSection from "./components/Image/Main";
 import styled from "styled-components";
 import ImageContext, {ImageProvider} from "./ImageContext"
+import {oldDates} from "./components/Archive/Dates";
 
 /*
   API:
@@ -27,6 +28,7 @@ function App() {
   // let [data,setData] = useState(mockData);
   let imageData = useContext(ImageContext);
   let {data,setData,current,setCurrent,original,setOriginal} = imageData();
+  let [archive, setArchive] = useState([]);
 
   useEffect(() => {
     let getData = () => {
@@ -37,11 +39,16 @@ function App() {
           setOriginal(res.data.hdurl);
         })
         .catch(err => console.log(err));
+      axios.all(oldDates.map((date) =>{
+          return (axios.get(`${URL}&date=${date}`)
+              .then(res => res.data))
+      })).then(results => {
+          setArchive(results);
+      });
+      console.log("data fetched!");
     }
-    console.log("initial mount");
     getData();
-  },[])
-    
+  }, [])
 
   let Main = styled.div`
     display:flex;
@@ -54,33 +61,20 @@ function App() {
     return ( <Loading/>)
   }
   return (
-    // value={
-    //   {
-    //     mainData:data, 
-    //     img:null, 
-    //     original:data.hdurl,
-    //     setData:setData
-
-    //   }
-    //   }
     <ImageProvider value={
       {data:data,
         setData:setData,
         current:current,
         setCurrent:setCurrent,
         original:original,
-        setOriginal:setOriginal
+        setOriginal:setOriginal,
       }
     }
     > 
       <div className="App">
-        {/* <p>
-          Read through the instructions in the README.md file to build your NASA
-          app! Have fun 🚀!
-        </p> */}
         <NavBar/>
         <Main>
-          <ArchiveBar/>
+          <ArchiveBar archive={archive}/>
           <ImageSection/>
         </Main>
       </div>

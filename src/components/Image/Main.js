@@ -1,10 +1,9 @@
-import React, {useEffect, useContext, useState} from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
-import axios from "axios";
 import ImageContext from "../../ImageContext";
+
 const ImageSection = () => {
     let imageData = useContext(ImageContext);
-    let [sonic,setSonic] = useState();
     let ImageMain = styled.div`
 
     background-color:cornflowerblue;
@@ -30,8 +29,7 @@ const ImageSection = () => {
             <Image src={imageData.current ? imageData.current : imageData.original} alt={`NASA's Daily: ${imageData.data.explanation}`}/>
             <Info>
                 <h2>{imageData.data.title}</h2>
-                <p>{imageData.data.explanation}{sonic}</p>
-                <button onClick={()=>{imageData.data.explanation = "DEEZ NUTS!"; imageData.setData(imageData.data);console.log(imageData.data)} }>Click me to change the state of the caption!</button>
+                <p>{imageData.data.explanation}</p>
             </Info>
         </ImageMain>
     );

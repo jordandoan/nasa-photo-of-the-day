@@ -23,7 +23,7 @@ const NavBar = (props) => {
         <Nav>
             {createLinks(nav1)}
             <div onClick={()=>{imageData.setCurrent("bye")}}>
-                {/* <h1>NASA PHOTO OF THE DAY <br></br>{imageData.mainData.date}</h1> */}{imageData.current}
+                <h1>NASA PHOTO OF THE DAY <br></br>{imageData.data.date}</h1>
             </div>
             {createLinks(nav2)}
         </Nav>

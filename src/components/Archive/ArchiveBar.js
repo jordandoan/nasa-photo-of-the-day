@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import ArchiveForm from "./ArchiveForm";
-import Collection from "./Collection";
+import {MemoizedCollection} from "./Collection";
 import styled from "styled-components";
 
 const ArchiveBar = (props) => {
@@ -16,7 +16,7 @@ const ArchiveBar = (props) => {
         <ArchiveBar>
             <StyledP>View any of the previous photos of the day!</StyledP>
             <ArchiveForm />
-            <Collection original="Hey"/>
+            <MemoizedCollection archive={props.archive}/>
         </ArchiveBar>
     );
 }

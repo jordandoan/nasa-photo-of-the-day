@@ -1,28 +1,16 @@
-import React, {useState, useEffect, useContext, memo} from "react";
-import {oldDates} from "./Dates";
-import {URL} from "../../App";
-import axios from "axios";
+import React, {useContext, memo} from "react";
 import styled from "styled-components";
 import ImageContext from "../../ImageContext";
 
-function arePropsEqual(prevProps,nextProps) {
-    return prevProps.original == nextProps.original
-}
-const Collection = () => {
-    let [data,setData] = useState([]);
+const Collection = (props) => {
     let imageData = useContext(ImageContext);
-    useEffect(()=>{
-        let getData = () => {
-            axios.all(oldDates.map((date) =>{
-                return (axios.get(`${URL}&date=${date}`)
-                    .then(res => res.data))
-            })).then(results => {
-                setData(results);
-            });
-        };
-        console.log("mounting... from collection");
-        getData();
-    }, [])
+    let handleMouseOver = (event) => {
+        imageData.setCurrent(event.target.src);
+    }
+
+    let handleMouseLeave = () => {
+        imageData.setCurrent(imageData.original);
+    }
 
     let Collection = styled.div`
         display:flex;
@@ -44,20 +32,17 @@ const Collection = () => {
         height: 130px;
         margin: -10px 0px 10px -10px;
     `
-    let handleEvent = (event) => {
-        imageData.setCurrent(event.target.src);
-    }
 
-    if (data.length == 0){
+    if (props.archive.length == 0){
         return (<h1>Loading...</h1>)
     }
     return (
         <Collection>
-            {data.map((date) => {
+            {props.archive.map((date) => {
                 if (date.media_type == "video") {
                     return  <ImageContainer key={date.date}><CollectionVideo key={date.date}src={date.url} alt={date.title}/></ImageContainer>
                 } else {
-                    return <ImageContainer onClick={(event) => {(handleEvent(event))}} key={date.date}><CollectionImage src={date.url} key={date.date} alt={date.title}/></ImageContainer>
+                    return <ImageContainer onMouseOver={(event) => handleMouseOver(event)} onMouseLeave={() => handleMouseLeave} key={date.date}><CollectionImage src={date.url} key={date.date} alt={date.title}/></ImageContainer>
                 }
             })} 
 
@@ -65,5 +50,9 @@ const Collection = () => {
     );
     
 }
-
-export default memo(Collection, arePropsEqual);
+function arePropsEqual(prevProps, currentProps) {
+    return prevProps.archive == currentProps.archive;
+}
+export default Collection;
+let MemoizedCollection = memo(Collection, arePropsEqual);
+export {MemoizedCollection};

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import axios from "axios";
+
 let useImage = () => {
     let [data,setData] = useState();
     let [current,setCurrent] = useState();
