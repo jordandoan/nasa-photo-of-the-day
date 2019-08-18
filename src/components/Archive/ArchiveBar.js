@@ -16,7 +16,7 @@ const ArchiveBar = (props) => {
         <ArchiveBar>
             <StyledP>View any of the previous photos of the day!</StyledP>
             <ArchiveForm />
-            <MemoizedCollection archive={props.archive}/>
+            <MemoizedCollection archive={props.archive} isTrue={true}/>
         </ArchiveBar>
     );
 }

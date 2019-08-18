@@ -4,13 +4,11 @@ import ImageContext from "../../ImageContext";
 
 const Collection = (props) => {
     let imageData = useContext(ImageContext);
-    let handleMouseOver = (event) => {
+
+    let handleClick = (event) => {
         imageData.setCurrent(event.target.src);
     }
 
-    let handleMouseLeave = () => {
-        imageData.setCurrent(imageData.original);
-    }
 
     let Collection = styled.div`
         display:flex;
@@ -40,9 +38,9 @@ const Collection = (props) => {
         <Collection>
             {props.archive.map((date) => {
                 if (date.media_type == "video") {
-                    return  <ImageContainer key={date.date}><CollectionVideo key={date.date}src={date.url} alt={date.title}/></ImageContainer>
+                    return  <ImageContainer key={date.date}><CollectionVideo onClick={(event) => handleClick(event)} key={date.date}src={date.url} alt={date.title}/></ImageContainer>
                 } else {
-                    return <ImageContainer onMouseOver={(event) => handleMouseOver(event)} onMouseLeave={() => handleMouseLeave} key={date.date}><CollectionImage src={date.url} key={date.date} alt={date.title}/></ImageContainer>
+                    return <ImageContainer key={date.date}><CollectionImage onClick={(event) => handleClick(event)} src={date.url} key={date.date} alt={date.title}/></ImageContainer>
                 }
             })} 
 
@@ -51,7 +49,7 @@ const Collection = (props) => {
     
 }
 function arePropsEqual(prevProps, currentProps) {
-    return prevProps.archive == currentProps.archive;
+    return prevProps.isTrue == currentProps.isTrue;
 }
 export default Collection;
 let MemoizedCollection = memo(Collection, arePropsEqual);

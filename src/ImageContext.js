@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 let useImage = () => {
     let [data,setData] = useState();
-    let [current,setCurrent] = useState();
+    let [current,setCurrent] = useState(null);
     let [original, setOriginal] = useState();
     return {data,setData,current,setCurrent,original,setOriginal}
 }
