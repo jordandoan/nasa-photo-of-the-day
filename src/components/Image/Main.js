@@ -3,7 +3,10 @@ import styled from "styled-components";
 import axios from "axios";
 import ImageContext from "../../ImageContext";
 const ImageSection = () => {
+    let imageData = useContext(ImageContext);
+    let [sonic,setSonic] = useState();
     let ImageMain = styled.div`
+
     background-color:cornflowerblue;
     width:700px;
     `
@@ -22,22 +25,13 @@ const ImageSection = () => {
         text-align:left;
         font-family: 'Montserrat', sans-serif;
     `
-    let imageData = useContext(ImageContext);
-    let [data,setData] = useState(imageData.mainData)
-    useEffect(() => {
-        let changeState = () => {
-            setData(imageData.mainData);
-        }
-        changeState();
-    }, [imageData.mainData])
-    console.log(imageData);
-    return(
+    return (
         <ImageMain>
-            <Image src={imageData.img ? imageData.img : imageData.original} alt={`NASA's Daily: ${imageData.mainData.explanation}`}/>
+            <Image src={imageData.current ? imageData.current : imageData.original} alt={`NASA's Daily: ${imageData.data.explanation}`}/>
             <Info>
-                <h2>{imageData.mainData.title}</h2>
-                <p>{data.explanation}</p>
-                <button onClick={()=>{imageData.mainData.explanation = "DEEZ NUTS!";imageData.setData(imageData.mainData)} }>Click me to change the state of the caption!</button>
+                <h2>{imageData.data.title}</h2>
+                <p>{imageData.data.explanation}{sonic}</p>
+                <button onClick={()=>{imageData.data.explanation = "DEEZ NUTS!"; imageData.setData(imageData.data);console.log(imageData.data)} }>Click me to change the state of the caption!</button>
             </Info>
         </ImageMain>
     );

@@ -11,7 +11,6 @@ const ArchiveForm = (props) => {
     let [day, changeDay] = useState("");
     let [month, changeMonth] = useState("");
     let [year, changeYear] = useState("");
-    let [data, setData] = useState(imageData)
 
     let changeData = (event, changeState) => {
         changeState(event.target.value);
@@ -24,7 +23,9 @@ const ArchiveForm = (props) => {
         }
         axios.get(URL+dateQuery)
             .then((res) => {
-                setData(res.data);
+                imageData.setData(res.data);
+                imageData.setCurrent(res.data.hdurl);
+                imageData.setOriginal(res.data.hdurl);
             });
     }
 
