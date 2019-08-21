@@ -54,28 +54,34 @@ function App() {
     width:80%;
     margin-top:20px;
   `
-  if (!data) {
-    return ( <Loading/>)
-  }
+  // if (!data) {
+  //   return ( <Loading/>)
+  // }
   return (
-    <ImageProvider value={
-      {data:data,
-        setData:setData,
-        current:current,
-        setCurrent:setCurrent,
-        original:original,
-        setOriginal:setOriginal,
-      }
-    }
-    > 
-      <div className="App">
-        <NavBar/>
-        <Main>
-          <ArchiveBar archive={archive}/>
-          <ImageSection/>
-        </Main>
-      </div>
-    </ImageProvider>
+    <div>
+      <h2>{data.title}</h2>
+      <img src={data.hdurl}/>
+      <p>{data.explanation}</p>
+    </div>
+
+    // <ImageProvider value={
+    //   {data:data,
+    //     setData:setData,
+    //     current:current,
+    //     setCurrent:setCurrent,
+    //     original:original,
+    //     setOriginal:setOriginal,
+    //   }
+    // }
+    // > 
+    //   <div className="App">
+    //     <NavBar/>
+    //     <Main>
+    //       <ArchiveBar archive={archive}/>
+    //       <ImageSection/>
+    //     </Main>
+    //   </div>
+    // </ImageProvider>
   );
 }
 

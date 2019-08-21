@@ -24,6 +24,16 @@ const ImageSection = () => {
         text-align:left;
         font-family: 'Montserrat', sans-serif;
     `
+    let Video = styled.iframe`
+    width: 500px;
+    margin: 20px 10px;
+`
+    let chosen = ""
+    if (imageData.current) {
+        chosen = imageData.current;
+    } else {
+        chosen = imageData.original;
+    }
     return (
         <ImageMain>
             <Image src={imageData.current ? imageData.current : imageData.original} alt={`NASA's Daily: ${imageData.data.explanation}`}/>
