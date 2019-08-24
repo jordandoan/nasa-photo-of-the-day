@@ -33,7 +33,6 @@ function App() {
       axios.get(URL)
         .then((res) => {
           setData(res.data);
-          setOriginal(res.data.hdurl);
         })
         .catch(err => console.log(err));
       axios.all(oldDates.map((date) =>{
@@ -54,9 +53,9 @@ function App() {
     width:80%;
     margin-top:20px;
   `
-  // if (!data) {
-  //   return ( <Loading/>)
-  // }
+  if (!data) {
+    return ( <Loading/>)
+  }
   return (
     <div>
       <h2>{data.title}</h2>

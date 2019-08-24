@@ -44,3 +44,14 @@ h1,h2 {
 select {
   font-family: 'Montserrat', sans-serif;
 }
+div {
+  width: 1000px;
+  margin:auto;
+  margin-top:200px;
+}
+img {
+  width: 500px;
+}
+h2, p {
+  color:white;
+}
