@@ -13,14 +13,11 @@ const Collection = (props) => {
     let imageList = [];
     const URL = "https://api.nasa.gov/planetary/apod?api_key=uXT4531jbPEaeOzwwqMGmNR2rkLV4Lhz2ssdj6TI";
     useEffect(() => {
-        oldDates.forEach((date) => {
-            axios.get(`${URL}&date=${date}`)
-                .then((res) => {
-                    // add url to image to array
-                    imageList.push(res.data);
-                    console.log(imageList);
-                    setImages(imageList);
-                });
+        axios.all(oldDates.map((date) =>{
+            return (axios.get(`${URL}&date=${date}`)
+                .then(res => res.data))
+        })).then(results => {
+            setImages(results);
         });
     }, []);
 
@@ -28,7 +25,9 @@ const Collection = (props) => {
         display:flex;
         flex-wrap:wrap;
         justify-content:center;
-        margin:100px;
+        margin:20px;
+        width:100%;
+
     `
     let ImageContainer = styled.div`
         width:70px;
@@ -45,7 +44,7 @@ const Collection = (props) => {
         margin: -10px 0px 10px -10px;
     `
 
-    if (oldImages.length < 1){
+    if (oldImages.length < 10){
         return (<h1>Loading...</h1>)
     }
     return (
@@ -57,7 +56,6 @@ const Collection = (props) => {
                     return <ImageContainer key={date.date}><CollectionImage onClick={(event) => handleClick(event)} src={date.url} key={date.date} alt={date.title}/></ImageContainer>
                 }
             })} 
-
         </Collection>
     );
     

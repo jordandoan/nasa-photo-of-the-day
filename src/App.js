@@ -35,12 +35,12 @@ function App() {
           setData(res.data);
         })
         .catch(err => console.log(err));
-      axios.all(oldDates.map((date) =>{
-          return (axios.get(`${URL}&date=${date}`)
-              .then(res => res.data))
-      })).then(results => {
-          setArchive(results);
-      });
+      // axios.all(oldDates.map((date) =>{
+      //     return (axios.get(`${URL}&date=${date}`)
+      //         .then(res => res.data))
+      // })).then(results => {
+      //     setArchive(results);
+      // });
       console.log("data fetched!");
     }
     getData();
