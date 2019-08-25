@@ -57,10 +57,17 @@ function App() {
     return ( <Loading/>)
   }
   return (
-    <div>
-      <h2>{data.title}</h2>
-      <img src={data.hdurl}/>
-      <p>{data.explanation}</p>
+    <div className="App">
+    <NavBar data={data}/>
+    <Main>
+      <ArchiveBar/>
+      <ImageSection data={data}/>
+        {/* <div>
+          <h2>{data.title}</h2>
+          <img src={data.hdurl}/>
+          <p>{data.explanation}</p>
+        </div> */}
+    </Main>
     </div>
 
     // <ImageProvider value={

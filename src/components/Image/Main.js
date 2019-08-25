@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import styled from "styled-components";
 import ImageContext from "../../ImageContext";
 
-const ImageSection = () => {
+const ImageSection = (props) => {
     let imageData = useContext(ImageContext);
     let ImageMain = styled.div`
 
@@ -29,17 +29,17 @@ const ImageSection = () => {
     margin: 20px 10px;
 `
     let chosen = ""
-    if (imageData.current) {
-        chosen = imageData.current;
-    } else {
-        chosen = imageData.original;
-    }
+    // if (imageData.current) {
+    //     chosen = imageData.current;
+    // } else {
+    //     chosen = imageData.original;
+    // }
     return (
         <ImageMain>
-            <Image src={imageData.current ? imageData.current : imageData.original} alt={`NASA's Daily: ${imageData.data.explanation}`}/>
+            <Image src={props.data.url} alt={`NASA's Daily: ${props.data.explanation}`}/>
             <Info>
-                <h2>{imageData.data.title}</h2>
-                <p>{imageData.data.explanation}</p>
+                <h2>{props.data.title}</h2>
+                <p>{props.data.explanation}</p>
             </Info>
         </ImageMain>
     );
