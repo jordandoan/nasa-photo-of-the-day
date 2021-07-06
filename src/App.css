@@ -18,11 +18,12 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
 .App-link {
   color: #61dafb;
 }
-
+body {
+  background-color:black;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -30,4 +31,16 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+nav * {
+  margin:5px;
+}
+
+h1,h2 {
+  font-family: 'Archivo Black', sans-serif;
+}
+
+select {
+  font-family: 'Montserrat', sans-serif;
 }
